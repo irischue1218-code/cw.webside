@@ -1,0 +1,392 @@
+/* =========================================================
+   悅讀童年 創造性寫作班
+   風格：溫暖米色紙感 × 襯線大標 × 自然成長意象
+   排版參考：栩悅牙醫（區塊式、圖文交錯、中英文小標）
+   ========================================================= */
+
+/* ---------- 設計變數（要換色改這裡就好）---------- */
+:root{
+  --paper:      #FBF7EF;   /* 主背景：溫暖米白 */
+  --paper-deep: #F3ECDD;   /* 卡片／區塊底色 */
+  --mist:       #EDF1E6;   /* 淡綠色塊背景 */
+  --ink:        #2E2A24;   /* 主要文字：暖墨黑 */
+  --ink-soft:   #6B6353;   /* 次要文字 */
+  --leaf:       #7FA463;   /* 主色：葉綠（成長）*/
+  --leaf-deep:  #4E6B3C;   /* 深葉綠 */
+  --amber:      #E0A340;   /* 副色：暖琥珀（童趣）*/
+  --line:       #E4DBC8;   /* 分隔線 */
+
+  --serif: "Noto Serif TC", serif;
+  --sans:  "Noto Sans TC", -apple-system, "PingFang TC", sans-serif;
+
+  --wrap: 1120px;
+  --radius: 20px;
+}
+
+/* ---------- 基礎重置 ---------- */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.85;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3,h4{ font-family:var(--serif); font-weight:700; line-height:1.35; letter-spacing:.02em; }
+
+/* ---------- 共用小標 eyebrow ---------- */
+.eyebrow{
+  font-family:var(--sans);
+  font-size:.72rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--leaf-deep);
+  font-weight:500;
+  margin-bottom:1.1rem;
+}
+.eyebrow.light{ color:var(--amber); }
+
+/* ---------- 按鈕 ---------- */
+.btn{
+  display:inline-block;
+  font-family:var(--sans);
+  font-size:.95rem;
+  letter-spacing:.06em;
+  padding:.85rem 2rem;
+  border:1.5px solid var(--leaf-deep);
+  border-radius:100px;
+  color:var(--leaf-deep);
+  transition:.35s ease;
+}
+.btn:hover{ background:var(--leaf-deep); color:var(--paper); }
+.btn-solid{ background:var(--leaf-deep); color:var(--paper); }
+.btn-solid:hover{ background:var(--ink); border-color:var(--ink); }
+
+/* =========================================================
+   頁首導覽
+   ========================================================= */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(251,247,239,.9);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  max-width:var(--wrap);
+  margin:0 auto;
+  padding:.9rem 1.5rem;
+  display:flex; align-items:center; gap:1.5rem;
+}
+.brand{ display:flex; align-items:center; gap:.7rem; }
+.brand-mark{ color:var(--leaf-deep); display:flex; }
+.brand-text{ display:flex; flex-direction:column; line-height:1.15; }
+.brand-text strong{ font-family:var(--serif); font-size:1.3rem; letter-spacing:.08em; }
+.brand-text em{ font-style:normal; font-size:.7rem; letter-spacing:.22em; color:var(--ink-soft); }
+
+.site-nav{ margin-left:auto; }
+.site-nav ul{ display:flex; gap:1.6rem; list-style:none; }
+.site-nav a{
+  font-size:.95rem; letter-spacing:.04em; color:var(--ink-soft);
+  position:relative; padding:.3rem 0; transition:color .25s;
+}
+.site-nav a::after{
+  content:""; position:absolute; left:0; bottom:-2px; width:0; height:1.5px;
+  background:var(--leaf-deep); transition:width .3s ease;
+}
+.site-nav a:hover{ color:var(--ink); }
+.site-nav a:hover::after{ width:100%; }
+
+.header-cta{
+  font-size:.9rem; letter-spacing:.06em;
+  padding:.55rem 1.4rem; border-radius:100px;
+  background:var(--amber); color:#fff; font-weight:500;
+  transition:.3s;
+}
+.header-cta:hover{ background:var(--leaf-deep); }
+
+.nav-toggle{
+  display:none; flex-direction:column; gap:5px;
+  background:none; border:0; cursor:pointer; margin-left:auto; padding:6px;
+}
+.nav-toggle span{ width:26px; height:2px; background:var(--ink); transition:.3s; }
+
+/* =========================================================
+   Hero 主視覺
+   ========================================================= */
+.hero{
+  position:relative;
+  min-height:88vh;
+  display:flex; align-items:center;
+  overflow:hidden;
+  background:linear-gradient(160deg,var(--mist) 0%,var(--paper) 55%,var(--paper-deep) 100%);
+}
+.hero-bg{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 82% 22%, rgba(224,163,64,.16), transparent 42%),
+    radial-gradient(circle at 12% 78%, rgba(127,164,99,.18), transparent 46%);
+}
+.hero-tree{
+  position:absolute; right:6%; bottom:0; width:min(30vw,340px); height:auto;
+  opacity:.9;
+}
+.hero-inner{
+  position:relative; z-index:2;
+  max-width:var(--wrap); width:100%;
+  margin:0 auto; padding:0 1.5rem;
+}
+.hero-eyebrow{
+  font-size:.78rem; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--leaf-deep); font-weight:500; margin-bottom:1.6rem;
+}
+.hero-title{
+  font-size:clamp(2.9rem,7vw,5.4rem);
+  font-weight:900; line-height:1.15; letter-spacing:.04em;
+  color:var(--ink);
+}
+.hero-sub{
+  margin-top:1.6rem; font-size:clamp(1rem,2vw,1.2rem);
+  color:var(--ink-soft); max-width:36ch;
+}
+.scroll-hint{
+  display:inline-flex; align-items:center; gap:.9rem;
+  margin-top:3rem; font-size:.8rem; letter-spacing:.24em;
+  text-transform:uppercase; color:var(--ink-soft);
+}
+.scroll-line{ width:60px; height:1px; background:var(--ink-soft); position:relative; overflow:hidden; }
+.scroll-line::after{
+  content:""; position:absolute; left:-30%; top:0; width:30%; height:100%;
+  background:var(--leaf-deep); animation:slide 2.2s infinite;
+}
+@keyframes slide{ 0%{left:-30%} 100%{left:100%} }
+
+/* =========================================================
+   通用區塊標題
+   ========================================================= */
+section{ padding:6.5rem 1.5rem; }
+.section-head{ max-width:var(--wrap); margin:0 auto 3.5rem; text-align:center; }
+.section-head h2{ font-size:clamp(1.9rem,4vw,2.8rem); }
+.section-head .eyebrow{
+  margin-top:.7rem; margin-bottom:0;
+}
+.section-lead{
+  max-width:52ch; margin:1.6rem auto 0;
+  color:var(--ink-soft); font-size:1.02rem;
+}
+
+/* =========================================================
+   理念（圖文交錯）
+   ========================================================= */
+.idea{ background:var(--paper); }
+.idea-inner{
+  max-width:var(--wrap); margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr; gap:4.5rem; align-items:center;
+}
+.idea-text h2{ font-size:clamp(2rem,4vw,3rem); margin:.4rem 0 1.6rem; }
+.idea-text .lead{ color:var(--ink-soft); font-size:1.08rem; margin-bottom:2.2rem; }
+.idea-media{
+  position:relative; border-radius:var(--radius); overflow:hidden;
+  box-shadow:0 30px 60px -30px rgba(78,107,60,.4);
+  aspect-ratio:4/3; background:var(--mist);
+}
+.idea-media img{ width:100%; height:100%; object-fit:cover; }
+.idea-media.img-fallback{
+  background:
+    repeating-linear-gradient(135deg,var(--mist),var(--mist) 20px,var(--paper-deep) 20px,var(--paper-deep) 40px);
+}
+.idea-media::after{
+  content:""; position:absolute; inset:0;
+  border:1px solid rgba(255,255,255,.4); border-radius:var(--radius);
+  pointer-events:none;
+}
+
+/* =========================================================
+   教學特色卡片
+   ========================================================= */
+.features{ background:var(--mist); }
+.feature-grid{
+  max-width:var(--wrap); margin:0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem;
+}
+.feature-card{
+  background:var(--paper); border-radius:var(--radius);
+  padding:2.4rem 1.8rem; transition:.4s ease;
+  border:1px solid transparent;
+}
+.feature-card:hover{
+  transform:translateY(-8px);
+  border-color:var(--leaf);
+  box-shadow:0 24px 40px -24px rgba(78,107,60,.5);
+}
+.feature-icon{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:64px; height:64px; border-radius:50%;
+  background:var(--mist); color:var(--leaf-deep); margin-bottom:1.4rem;
+}
+.feature-card h3{ font-size:1.3rem; margin-bottom:.7rem; }
+.feature-card p{ color:var(--ink-soft); font-size:.95rem; margin-bottom:1.4rem; }
+.feature-more{ font-size:.82rem; letter-spacing:.06em; color:var(--leaf-deep); font-weight:500; }
+
+/* =========================================================
+   教學與課程網格
+   ========================================================= */
+.services{ background:var(--paper); }
+.service-grid{
+  max-width:920px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem;
+}
+.service-item{
+  display:flex; flex-direction:column; align-items:center; gap:.9rem;
+  padding:2rem 1rem; border-radius:16px;
+  background:var(--paper-deep); text-align:center;
+  font-family:var(--serif); font-size:1.05rem; letter-spacing:.05em;
+  transition:.35s ease;
+}
+.service-item:hover{ background:var(--leaf-deep); color:var(--paper); transform:translateY(-4px); }
+.s-ico{
+  font-size:1.7rem; color:var(--amber); transition:color .35s;
+}
+.service-item:hover .s-ico{ color:var(--paper); }
+.services-cta{ text-align:center; margin-top:3.2rem; }
+
+/* =========================================================
+   學習成果 / 最新消息
+   ========================================================= */
+.news{ background:var(--paper-deep); }
+.news-grid{
+  max-width:var(--wrap); margin:0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem;
+}
+.news-card{
+  background:var(--paper); border-radius:16px; padding:1.8rem 1.6rem;
+  display:flex; flex-direction:column; gap:1rem;
+  border-top:3px solid var(--leaf); transition:.4s ease;
+}
+.news-card:hover{ transform:translateY(-6px); box-shadow:0 22px 40px -26px rgba(46,42,36,.5); }
+.news-tag{
+  align-self:flex-start; font-size:.72rem; letter-spacing:.08em;
+  background:var(--mist); color:var(--leaf-deep);
+  padding:.28rem .8rem; border-radius:100px; font-weight:500;
+}
+.news-card h3{ font-size:1.02rem; font-weight:500; line-height:1.6; flex:1; }
+.news-more{ font-size:.82rem; color:var(--amber); font-weight:500; letter-spacing:.04em; }
+.news-cta{ text-align:center; margin-top:3.2rem; }
+
+/* =========================================================
+   聯絡我們
+   ========================================================= */
+.contact{ background:var(--leaf-deep); color:var(--paper); }
+.contact-inner{
+  max-width:var(--wrap); margin:0 auto;
+  display:grid; grid-template-columns:1.3fr 1fr; gap:4rem; align-items:center;
+}
+.contact-info h2{ font-size:clamp(1.9rem,4vw,2.8rem); margin:.4rem 0 2rem; color:var(--paper); }
+.contact-list{ list-style:none; display:flex; flex-direction:column; gap:1rem; }
+.contact-list li{
+  display:flex; gap:1.2rem; align-items:baseline;
+  border-bottom:1px solid rgba(255,255,255,.18); padding-bottom:1rem;
+  font-size:1.05rem;
+}
+.contact-list li span{
+  min-width:5.5em; font-size:.82rem; letter-spacing:.1em;
+  color:rgba(255,255,255,.6);
+}
+.contact-list a:hover{ color:var(--amber); }
+.contact-social{ margin-top:1.8rem; }
+.contact-social a{
+  display:inline-block; border:1.5px solid rgba(255,255,255,.5);
+  padding:.6rem 1.5rem; border-radius:100px; font-size:.9rem; letter-spacing:.04em;
+  transition:.3s;
+}
+.contact-social a:hover{ background:var(--amber); border-color:var(--amber); }
+
+.contact-line{
+  background:var(--paper); color:var(--ink);
+  border-radius:var(--radius); padding:2.4rem; text-align:center;
+}
+.line-title{ font-family:var(--serif); font-size:1.15rem; margin-bottom:1.4rem; }
+.line-qr{ width:180px; height:180px; margin:0 auto; border-radius:12px; }
+.contact-line.qr-fallback{ padding-bottom:2.4rem; }
+.contact-line.qr-fallback::before{
+  content:"QR"; display:flex; align-items:center; justify-content:center;
+  width:180px; height:180px; margin:0 auto 0;
+  background:var(--mist); border-radius:12px; color:var(--leaf-deep);
+  font-family:var(--serif); font-size:2rem; letter-spacing:.1em;
+}
+.line-hint{ margin-top:1.2rem; font-size:.85rem; color:var(--ink-soft); letter-spacing:.1em; }
+
+/* =========================================================
+   頁尾
+   ========================================================= */
+.site-footer{ background:var(--ink); color:rgba(255,255,255,.75); padding:4.5rem 1.5rem 2rem; }
+.footer-inner{
+  max-width:var(--wrap); margin:0 auto;
+  display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:2.5rem;
+}
+.footer-brand .brand-text strong{ color:#fff; font-size:1.4rem; letter-spacing:.08em; }
+.footer-brand .brand-text em{ font-style:normal; color:rgba(255,255,255,.5); font-size:.72rem; letter-spacing:.22em; }
+.footer-brand p{ margin-top:1.2rem; font-size:.9rem; line-height:1.9; }
+.footer-col h4{
+  font-family:var(--sans); font-size:.8rem; letter-spacing:.14em; font-weight:500;
+  color:#fff; margin-bottom:1.2rem; text-transform:uppercase;
+}
+.footer-col a{
+  display:block; font-size:.92rem; padding:.35rem 0; color:rgba(255,255,255,.7);
+  transition:color .25s;
+}
+.footer-col a:hover{ color:var(--amber); }
+.footer-bottom{
+  max-width:var(--wrap); margin:3.5rem auto 0; padding-top:1.8rem;
+  border-top:1px solid rgba(255,255,255,.12);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:.6rem;
+  font-size:.8rem; color:rgba(255,255,255,.5); letter-spacing:.05em;
+}
+
+/* =========================================================
+   捲動淡入動畫
+   ========================================================= */
+.reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+.reveal.in{ opacity:1; transform:none; }
+
+/* =========================================================
+   響應式（平板 / 手機）
+   ========================================================= */
+@media (max-width:960px){
+  .feature-grid{ grid-template-columns:repeat(2,1fr); }
+  .service-grid{ grid-template-columns:repeat(3,1fr); }
+  .news-grid{ grid-template-columns:repeat(2,1fr); }
+  .idea-inner{ grid-template-columns:1fr; gap:2.5rem; }
+  .contact-inner{ grid-template-columns:1fr; gap:2.5rem; }
+  .footer-inner{ grid-template-columns:1fr 1fr; gap:2rem; }
+}
+
+@media (max-width:720px){
+  section{ padding:4.5rem 1.3rem; }
+  .header-cta{ display:none; }
+  .nav-toggle{ display:flex; }
+  .site-nav{
+    position:fixed; inset:0 0 0 auto; width:min(78vw,320px);
+    background:var(--paper); box-shadow:-20px 0 60px -30px rgba(0,0,0,.4);
+    transform:translateX(100%); transition:transform .4s ease;
+    padding:5rem 2rem; margin:0;
+  }
+  .site-nav.open{ transform:none; }
+  .site-nav ul{ flex-direction:column; gap:.4rem; }
+  .site-nav a{ font-size:1.1rem; padding:.7rem 0; display:block; border-bottom:1px solid var(--line); }
+  .service-grid{ grid-template-columns:repeat(2,1fr); }
+  .news-grid{ grid-template-columns:1fr; }
+  .footer-inner{ grid-template-columns:1fr; }
+  .hero-tree{ opacity:.55; width:44vw; }
+}
+
+/* 尊重使用者的減少動態偏好 */
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+  .reveal{ opacity:1; transform:none; }
+  html{ scroll-behavior:auto; }
+}
